@@ -1,4 +1,4 @@
-echo .idea/
-echo __pycache__/
-echo *.pyc
-echo .venv/
+.venv/
+__pycache__/
+*.pyc
+.idea/
