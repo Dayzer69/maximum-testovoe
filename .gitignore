@@ -1,0 +1,5 @@
+echo .idea/
+echo __pycache__/
+echo *.pyc
+echo .venv/
+
