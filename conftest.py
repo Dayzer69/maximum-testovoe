@@ -3,6 +3,7 @@ from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
 from pages.main_page import MainPage
+from pages.login_page import LoginPage
 
 
 @pytest.fixture
@@ -20,4 +21,11 @@ def browser():
 def main_page(browser):
     page = MainPage(browser)
     page.open(page.URL)
-    return page
+    yield page
+
+
+@pytest.fixture
+def login_page(browser):
+    page = LoginPage(browser)
+    page.open(page.URL)
+    yield page
