@@ -14,6 +14,7 @@ class MainPage(BasePage):
     PROMO_FIELD = (By.CLASS_NAME, "promo")
     FOOTER = (By.CSS_SELECTOR, '.py-3.bg-grey')
     WELCOME_TEXT = (By.ID, 'welcome_text')
+    LOGOUT_BUTTON = (By.XPATH, "//button[contains(text(), 'Logout')]")
 
     def check_main_page_presence(self):
         elements = {
@@ -43,6 +44,17 @@ class MainPage(BasePage):
         with allure.step(step):
             actual_text = self.get_text(self.WELCOME_TEXT)
             expected_text = f"Welcome, {user_name}"
+            logout_button = self.wait_for_visibility(self.LOGOUT_BUTTON)
             assert actual_text == expected_text, f"Expected '{expected_text}', but got '{actual_text}'"
+            assert logout_button.is_displayed(), f"Element Logout Button is not visible"
+
+    def click_logout(self):
+        step = f'Click Logout button'
+        with allure.step(step):
+            logout_button = self.wait_for_visibility(self.LOGOUT_BUTTON)
+            logout_button.click()
+
+
+
 
 
